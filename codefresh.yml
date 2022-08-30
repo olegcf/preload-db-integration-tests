@@ -27,11 +27,7 @@ steps:
     environment:
     - POSTGRES_HOST=my_postgresql_db
     services:
-      composition:
-        my_postgresql_db:
-          image: postgres:11.5
-          ports:
-            - 5432 
+      composition: docker-compose.yml
       readiness:
         timeoutSeconds: 30
         initialDelaySeconds: 10
@@ -43,4 +39,3 @@ steps:
         image: 'postgres:11.5'
         commands:
           - "psql -h my_postgresql_db -U postgres < /codefresh/volume/preload-db-integration-tests/testdata/preload.sql"
-        
